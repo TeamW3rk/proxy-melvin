@@ -15,11 +15,10 @@ const renderComponents = require('./helpers/render_components');
 let components;
 
 app.get('/r/:id', (req, res) => {
-  axios.get(`http://localhost:1127/r/${req.params.id}/about`)
-    renderComponents(req.params.id, components)
-      .then((renderedComponents) => {
-        res.send(mainHTML(renderedComponents));
-      });
+  renderComponents(req.params.id, components)
+    .then((renderedComponents) => {
+      res.send(mainHTML(renderedComponents));
+    });
 });
 
 downloadBundles().then(() => {
