@@ -10,8 +10,9 @@ const renderComponents = (id, components) => {
         const props = {};
         props[info.props.data] = response.data;
         props[info.props.id] = id;
-        return [info.service, ReactDom.renderToString(React.createElement(components[info.service], props))];
-    });
+        return [info.service, ReactDom.renderToString(React.createElement(components[info.service], props)), props];
+      })
+      .catch(() => console.log(`render component ${info.service} failed`));
   });
   return Promise.all(renderedComponents);
 };
